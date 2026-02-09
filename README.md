@@ -123,9 +123,21 @@ Years of Experience
 🛠 Tech Stack
 
 Python
+
 Scikit-learn
+
 NLTK
+
 TF-IDF
+
 Regex
+
 Streamlit
+
 LibreOffice
+
+
+Install LibreOffice (Required for DOC files)
+
+Download and install LibreOffice from:
+https://www.libreoffice.org/
