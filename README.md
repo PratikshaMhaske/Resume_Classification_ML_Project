@@ -3,7 +3,7 @@
 An end-to-end NLP & Machine Learning project that automatically analyzes resumes and predicts the most relevant job role.
 The application also extracts skills and years of experience from resumes and provides results through a Streamlit web app.
 
-📌 Project Overview
+📌 **Project Overview**
 
 Recruiters receive hundreds of resumes daily. Manually screening them is time-consuming and inefficient.
 
@@ -17,7 +17,7 @@ Extracting years of experience
 
 Providing an interactive web interface for real-time predictions
 
-🎯 Features
+🎯 **Features**
 
 ✔ Resume Classification (ML Model)
 ✔ Skills Extraction (NLP Keyword Matching)
@@ -26,10 +26,10 @@ Providing an interactive web interface for real-time predictions
 ✔ Interactive Streamlit Web App
 ✔ End-to-end ML pipeline
 
-🧠 Machine Learning Workflow
-1️⃣ Data Collection
+🧠 **Machine Learning Workflow**
+1️⃣ **Data Collection**
 
-Dataset contains resumes categorized into:
+**Dataset contains resumes categorized into:**
 
 React Developer
 
@@ -39,15 +39,16 @@ Workday
 
 Peoplesoft
 
-2️⃣ Text Extraction
+2️⃣ **Text Extraction**
 
-Resumes are parsed using:
+**Resumes are parsed using:**
 
 File Type	Library
 PDF	PyPDF2
 DOCX	python-docx
 DOC	LibreOffice conversion
-3️⃣ Text Preprocessing
+
+3️⃣ **Text Preprocessing**
 
 • Lowercasing
 • Stopword removal
@@ -55,7 +56,7 @@ DOC	LibreOffice conversion
 • Lemmatization
 • Special token replacement for numbers
 
-4️⃣ Feature Engineering
+4️⃣ **Feature Engineering**
 
 Text converted to numerical vectors using:
 
@@ -65,11 +66,11 @@ Unigrams + Bigrams
 
 Feature selection applied
 
-5️⃣ Model Building
+5️⃣ **Model Building**
 
-Five algorithms were compared:
+**Five algorithms were compared:**
 
-Model	Result
+**Model	Result**
 Naive Bayes	100% Accuracy
 Logistic Regression	100% Accuracy
 Support Vector Machine (Final Model)	⭐ Best
@@ -79,16 +80,16 @@ Final Model Selected:
 
 Linear SVM with Hyperparameter Tuning
 
-6️⃣ Model Validation
+6️⃣ **Model Validation**
 
 • Stratified Train-Test Split
 • 10-Fold Cross Validation
 • Repeated Cross Validation
 
-Final Mean CV Accuracy ≈ 98%
+**Final Mean CV Accuracy ≈ 98%**
 
-🧾 Additional NLP Features
-🔹 Skills Extraction
+🧾 **Additional NLP Features
+🔹 Skills Extraction**
 
 Uses a domain-specific skills dictionary covering:
 
@@ -100,7 +101,7 @@ DevOps Tools
 
 Workday & Peoplesoft skills
 
-🔹 Experience Extraction
+🔹 **Experience Extraction**
 
 Regex based detection of patterns like:
 
@@ -110,7 +111,7 @@ Regex based detection of patterns like:
 
 “2 year experience”
 
-🌐 Streamlit Web Application
+🌐 **Streamlit Web Application**
 
 Users can upload resumes and get:
 
@@ -120,7 +121,7 @@ Extracted Skills
 
 Years of Experience
 
-🛠 Tech Stack
+🛠 **Tech Stack**
 
 Python
 
@@ -137,16 +138,16 @@ Streamlit
 LibreOffice
 
 
+
 Install LibreOffice (Required for DOC files)
 
 Download and install LibreOffice from:
 https://www.libreoffice.org/
 
 
-Author
 
-Er. Pratiksha Mhaske 
+**Author: Er. Pratiksha Mhaske** 
 
-LinkedIn: https://www.linkedin.com/in/pratiksha-mhaske-173643387
+**LinkedIn:** https://www.linkedin.com/in/pratiksha-mhaske-173643387
 
-GitHub: https://github.com/PratikshaMhaske
+**GitHub:** https://github.com/PratikshaMhaske
