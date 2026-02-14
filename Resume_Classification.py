@@ -10,6 +10,7 @@ import nltk
 import os
 import glob
 import time
+import pandas as pd
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 
@@ -48,7 +49,8 @@ skills_list = [
     "xml","xslt","json","soap","rest api","web services",
     "peoplesoft","peoplesoft hrms","fscm"
 ]
-# Skills extraction Function
+
+# Skills extraction function
 def extract_skills(text):
     text = text.lower()
     found_skills = []
@@ -57,7 +59,7 @@ def extract_skills(text):
             found_skills.append(skill)
     return list(set(found_skills))
 
-# EXperience extraction function
+# Experience extraction function
 def extract_experience(text):
     text = text.lower()
     patterns = [
@@ -71,7 +73,7 @@ def extract_experience(text):
             return match.group(1) + " years"
     return "Not Found"
 
-# pdf text extraction function
+# PDF extraction
 def extract_text_from_pdf(path):
     text = ""
     pdf = PdfReader(path)
@@ -80,12 +82,12 @@ def extract_text_from_pdf(path):
             text += page.extract_text()
     return text
 
-# Docx text extraction function
+# DOCX extraction
 def extract_text_from_docx(path):
     doc = docx.Document(path)
     return "\n".join([para.text for para in doc.paragraphs])
 
-# DOC → DOCX conversion function
+# DOC → DOCX conversion
 def convert_doc_to_docx(file_path):
     libreoffice_path = r"C:\Program Files\LibreOffice\program\soffice.exe"
     output_dir = os.path.dirname(file_path)
@@ -115,10 +117,9 @@ def convert_doc_to_docx(file_path):
         return None
 
 # Streamlit UI
-st.title("🤖 Resume Screening System")
+st.title("🤖 Resume Screening Dashboard")
 st.write("Upload resumes (PDF, DOCX, DOC)")
 
-# File Upload
 uploaded_files = st.file_uploader(
     "Upload Resume Files",
     type=["pdf", "docx", "doc"],
@@ -128,6 +129,9 @@ uploaded_files = st.file_uploader(
 # MAIN PIPELINE
 if st.button("Analyze Resume"):
     if uploaded_files:
+
+        results = []
+
         for file in uploaded_files:
 
             with tempfile.NamedTemporaryFile(delete=False) as temp_file:
@@ -157,12 +161,49 @@ if st.button("Analyze Resume"):
             skills = extract_skills(resume_text)
             experience = extract_experience(resume_text)
 
-            # Display Output
-            st.success(f"📄 {file.name}")
-            st.write(f"**Predicted Role:** {job_role}")
-            st.write(f"**Skills Found:** {', '.join(skills) if skills else 'None'}")
-            st.write(f"**Experience:** {experience}")
-            st.divider()
+            results.append({
+                "File Name": file.name,
+                "Predicted Role": job_role,
+                "Skills": ", ".join(skills) if skills else "None",
+                "Experience": experience
+            })
+
+        # Create DataFrame
+        df_results = pd.DataFrame(results)
+
+        # Convert experience text → number
+        def exp_to_num(exp):
+            try:
+                return int(exp.split()[0])
+            except:
+                return 0
+
+        df_results["Exp_num"] = df_results["Experience"].apply(exp_to_num)
+
+        # Sort results
+        df_results = df_results.sort_values(
+            by=["Predicted Role", "Exp_num"],
+            ascending=[True, False]
+        )
+
+        df_results.drop("Exp_num", axis=1, inplace=True)
+        df_results.reset_index(drop=True, inplace=True)
+
+        # Show table in app
+        st.subheader("📊 Resume Screening Results")
+        st.dataframe(df_results, use_container_width=True)
+
+        # Excel download
+        excel_file = "Resume_Screening_Results.xlsx"
+        df_results.to_excel(excel_file, index=False)
+
+        with open(excel_file, "rb") as f:
+            st.download_button(
+                label="Download Results as Excel",
+                data=f,
+                file_name=excel_file,
+                mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            )
 
     else:
         st.warning("Please upload at least one resume.")
