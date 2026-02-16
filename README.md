@@ -46,7 +46,7 @@ Peoplesoft
 File Type	Library
 PDF	PyPDF2
 DOCX	python-docx
-DOC	LibreOffice conversion
+DOC	**LibreOffice** conversion
 
 3️⃣ **Text Preprocessing**
 
@@ -73,12 +73,12 @@ Feature selection applied
 **Model	Result**
 Naive Bayes	100% Accuracy
 Logistic Regression	100% Accuracy
-Support Vector Machine (Final Model)	⭐ Best
+**Support Vector Machine (Final Model)	⭐ Best**
 Random Forest	100% Accuracy
 KNN	Slightly lower
 Final Model Selected:
 
-Linear SVM with Hyperparameter Tuning
+Linear **SVM** with Hyperparameter Tuning
 
 6️⃣ **Model Validation**
 
@@ -123,7 +123,7 @@ Years of Experience
 
 🛠 **Tech Stack**
 
-Python
+**Python**
 
 Scikit-learn
 
@@ -141,7 +141,7 @@ LibreOffice
 
 Install LibreOffice (Required for DOC files)
 
-Download and install LibreOffice from:
+**Download and install LibreOffice from:**
 https://www.libreoffice.org/
 
 
