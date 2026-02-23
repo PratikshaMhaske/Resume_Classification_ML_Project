@@ -17,6 +17,8 @@ Extracting years of experience
 
 Providing an interactive web interface for real-time predictions
 
+Finally user can download the excel sheet
+
 🎯 **Features**
 
 ✔ Resume Classification (ML Model)
@@ -115,11 +117,11 @@ Regex based detection of patterns like:
 
 Users can upload resumes and get:
 
-Predicted Job Role
+Predicted Job Role(Resumes are sorted Category wise)
 
 Extracted Skills
 
-Years of Experience
+Years of Experience(Sorted in ascending order for easy shortlisting)
 
 🛠 **Tech Stack**
 
